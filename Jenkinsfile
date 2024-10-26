@@ -2,7 +2,7 @@ pipeline {
     agent { label 'slave'}
 
     environment {
-        DOCKER_HUB_REPO = 'farooqdevops/my-node-app' // Replace with your Docker Hub repo
+        DOCKER_HUB_REPO = 'aholman5/mynode' // Replace with your Docker Hub repo
         DOCKER_HUB_CREDENTIALS_ID = 'docker-hub' // Jenkins credentials ID for Docker Hub
         IMAGE_TAG = "latest" // This can be dynamic, like using a commit hash or build number
         NEW_IMAGE_TAG = "v3.0.0" // Replace with the tag version you want to use
