@@ -13,11 +13,11 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-
+                    dir('flask-app-2') {
                     sh 'ls -l'
                     // Build Docker image using Dockerfile in the current directory
                     sh "docker build -t ${DOCKER_HUB_REPO}:${IMAGE_TAG} ."
-
+                    }
                 }
             }
         }
