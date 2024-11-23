@@ -13,17 +13,36 @@ module "eks" {
 
   eks_managed_node_group_defaults = {}
   eks_managed_node_groups = {
-    master={
+    master = {
       desired_size = 1
-      min_size = 1
-      max_size = 1
-      lables={role="master"}
+      min_size     = 1
+      max_size     = 1
+      lables = { role = "master" }
 
-instance_types = ["t2.micro"]
+      instance_types = ["t2.micro"]
       cpacity_type = "ON_DEMAND"
-      disk_size = 40
+      disk_size    = 40
     }
 
+
+    worker = {
+      desired_size = 0
+      min_size     = 0
+      max_size     = 3
+      lables = { role = "worker" }
+      lables = { "armonddev.io/role": "worker" }
+
+      instance_types = ["t2.medium"]
+      cpacity_type = "ON_DEMAND"
+      disk_size    = 40
+      taints = [{
+        key    = "worker"
+        value  = "true"
+        effect = "NO_SCHEDULE"
+      }]
+
+
+    }
   }
 
 }
