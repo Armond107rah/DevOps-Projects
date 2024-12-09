@@ -19,7 +19,7 @@ module "eks" {
       max_size     = 1
       lables = { role = "master" }
 
-      instance_types = ["t2.micro"]
+      instance_types = ["t2.medium"]
       cpacity_type = "ON_DEMAND"
       disk_size    = 40
     }
