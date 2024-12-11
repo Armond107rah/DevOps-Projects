@@ -24,27 +24,28 @@ module "eks" {
       disk_size    = 40
     }
 
-
-    worker = {
-      desired_size = 0
+    cpu_worker = {
+      desired_size = 1
       min_size     = 0
-      max_size     = 3
-      lables = { role = "worker" }
-      lables = { "armonddev.io/role" : "worker" }
+      max_size     = 4
 
+      labels = {
+        role = "worker"
+      }
+      labels = {
+        "adev.io/role": "workers-cpu"
+
+      }
       instance_types = ["t2.medium"]
-      cpacity_type = "ON_DEMAND"
-      disk_size    = 40
-      taints = [
-        {
-          key    = "worker"
-          value  = "true"
-          effect = "NO_SCHEDULE"
-        }
-      ]
+      capacity_type  = "ON_DEMAND"
 
-
+      taints = [{
+        key    = "worker"
+        value  = "true"
+        effect = "NO_SCHEDULE"
+      }]
     }
+
   }
 
 
